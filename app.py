@@ -7,56 +7,54 @@ Original file is located at
     https://colab.research.google.com/drive/1U5pM9JaDADQBTHHFokYlVkUneSfdLMxG
 """
 
-!pip install -q streamlit pyngrok google-generativeai
-
 # Commented out IPython magic to ensure Python compatibility.
 # %%writefile app.py
 # 
-# import streamlit as st
-# import google.generativeai as genai
+import streamlit as st
+import google.generativeai as genai
 # 
 # # Configure Gemini API
-# genai.configure(api_key=st.secrets["AQ.Ab8RN6KNgXn7yuZH_CvPel5rY7u_lrPOPSNTRG-SPjbzYfcmoQ"])
+genai.configure(api_key=st.secrets["AQ.Ab8RN6KNgXn7yuZH_CvPel5rY7u_lrPOPSNTRG-SPjbzYfcmoQ"])
 # 
-# model = genai.GenerativeModel("gemini-2.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash")
 # 
-# st.set_page_config(page_title="AI Learning Buddy Shubhi", page_icon="🎓")
+st.set_page_config(page_title="AI Learning Buddy Shubhi", page_icon="🎓")
 # 
-# st.title("🎓 AI Learning Buddy Shubhi")
+st.title("🎓 AI Learning Buddy Shubhi")
 # 
-# topic = st.text_input("Enter a Topic")
+topic = st.text_input("Enter a Topic")
 # 
-# option = st.selectbox(
-#     "Choose Activity",
-#     [
-#         "Explain Concept",
-#         "Real-Life Example",
-#         "Generate Quiz",
-#         "Ask Anything"
-#     ]
-# )
+option = st.selectbox(
+     "Choose Activity",
+     [
+         "Explain Concept",
+         "Real-Life Example",
+         "Generate Quiz",
+         "Ask Anything"
+     ]
+ )
+ 
+if st.button("Generate"):
 # 
-# if st.button("Generate"):
+     if topic == "":
+         st.warning("Please enter a topic.")
+     else:
+ 
+         if option == "Explain Concept":
+             prompt = f"Explain {topic} in simple language for a beginner."
+ 
+         elif option == "Real-Life Example":
+             prompt = f"Give one simple real-life example of {topic}."
 # 
-#     if topic == "":
-#         st.warning("Please enter a topic.")
-#     else:
-# 
-#         if option == "Explain Concept":
-#             prompt = f"Explain {topic} in simple language for a beginner."
-# 
-#         elif option == "Real-Life Example":
-#             prompt = f"Give one simple real-life example of {topic}."
-# 
-#         elif option == "Generate Quiz":
-#             prompt = f"Create 5 MCQs on {topic} with answers."
-# 
-#         else:
-#             prompt = topic
-# 
-#         response = model.generate_content(prompt)
-# 
-#         st.write(response.text)
+         elif option == "Generate Quiz":
+             prompt = f"Create 5 MCQs on {topic} with answers."
+ 
+         else:
+             prompt = topic
+ 
+         response = model.generate_content(prompt)
+ 
+         st.write(response.text)
 
 !nohup streamlit run app.py --server.port 8501 &
 
