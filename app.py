@@ -56,20 +56,20 @@ if st.button("Generate"):
  
          st.write(response.text)
 
-!nohup streamlit run app.py --server.port 8501 &
+#!nohup streamlit run app.py --server.port 8501 &
 
-import time
-time.sleep(10)
+#import time
+#time.sleep(10)
 
-!cat nohup.out
+#!cat nohup.out
 
-!pip install -q pyngrok
+#!pip install -q pyngrok
 
-from pyngrok import ngrok
+#from pyngrok import ngrok
 
-ngrok.set_auth_token("3FrBOlHorwogYuPpVhAIHm32wz5_2Y1YPSxYLd58UwkmrmWX6")
+#ngrok.set_auth_token("3FrBOlHorwogYuPpVhAIHm32wz5_2Y1YPSxYLd58UwkmrmWX6")
 
-public_url = ngrok.connect(8501)
+#public_url = ngrok.connect(8501)
 
 
-print(public_url)
+#print(public_url)
